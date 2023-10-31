@@ -4,15 +4,16 @@ namespace Domain.Entities
 {
     public class Immobile
     {
-        public Immobile(string propertyCode, DateTime inspectionDate, Address address)
+        public Immobile(DateTime inspectionDate, Address address, string status)
         {
-            InspectionDate = inspectionDate;
             Address = address;
-            InspectionDate = inspectionDate;    
+            InspectionDate = inspectionDate;
+            Status = status;
         }
 
-        public string PropertyCode { get; private set; }
+        //public string PropertyCode { get; private set; }
         public DateTime InspectionDate { get; private set; }
+        public string Status { get; set; }
         public Address Address { get; private set; }
 
         public bool InspectionIsValid()
