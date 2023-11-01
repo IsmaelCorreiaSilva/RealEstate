@@ -37,7 +37,7 @@ namespace DomainTests
             var endContrat = new DateTime(2025, 11, 1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
-            var inspectionDate = DateTime.Today; 
+            var inspectionDate = DateTime.Today;
 
             var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
             var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
@@ -159,7 +159,7 @@ namespace DomainTests
             var immobile = new Immobile(inspectionDate, address, "active");
             var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
             var renter = new Person("333.333.333-33", "Maria de Souza", dateBirthRenter);
-            var contract = new Contract(locator, renter, immobile,startContrat, endContrat);
+            var contract = new Contract(locator, renter, immobile, startContrat, endContrat);
             var expectedLocator = false;
             //Act
             var resultLocator = contract.RenterIsValid();
@@ -231,12 +231,82 @@ namespace DomainTests
             var contract = new Contract(locator, renter, immobile, startContrat, endContrat);
             var expected = DateTime.Today.AddYears(1);
             //Act
-            var result = contract.MinimumDate;
+            var result = contract.MinimumContract;
 
 
             //Assert
             Assert.Equal(expected, result);
         }
-    }
+        [Fact]
+        public void DeveCriarUmContrato_Com_DataDeInicioDoContratoNoPassado()
+        {
+            //Arrange
+            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
+            var startContrat = new DateTime(2023, 10, 1);
+            var endContrat = new DateTime(2025, 11, 1);
+            var dateBirthLocator = new DateTime(1980, 05, 18);
+            var dateBirthRenter = new DateTime(1993, 02, 20);
+            var inspectionDate = DateTime.Today.AddDays(-10);
 
+            var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
+            var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
+            var immobile = new Immobile(inspectionDate, address, "active");
+            var contract = new Contract(locator, renter, immobile, startContrat, endContrat);
+            var expected = false;
+            //Act
+            var result = contract.ContractPeriodIsValid();
+
+
+            //Assert
+            Assert.Equal(expected, result);
+        }
+        [Fact]
+        public void DeveCriarUmContrato_Com_DataDeFimDoContratoNoPassado()
+        {
+            //Arrange
+            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
+            var startContrat = DateTime.Today.AddDays(2);
+            var endContrat = new DateTime(2023, 10, 10);
+            var dateBirthLocator = new DateTime(1980, 05, 18);
+            var dateBirthRenter = new DateTime(1993, 02, 20);
+            var inspectionDate = DateTime.Today.AddDays(-10);
+
+            var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
+            var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
+            var immobile = new Immobile(inspectionDate, address, "active");
+            var contract = new Contract(locator, renter, immobile, startContrat, endContrat);
+            var expected = false;
+            //Act
+            var result = contract.ContractPeriodIsValid();
+
+
+            //Assert
+            Assert.Equal(expected, result);
+        }
+        [Fact]
+        public void DeveCriarUmContrato_Com_DataDeFimDoContratoMenorQueDataMinima()
+        {
+            //Arrange
+            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
+            var startContrat = DateTime.Today.AddDays(2);
+            var endContrat = new DateTime(2023, 10, 10);
+            var dateBirthLocator = new DateTime(1980, 05, 18);
+            var dateBirthRenter = new DateTime(1993, 02, 20);
+            var inspectionDate = DateTime.Today.AddDays(-10);
+
+            var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
+            var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
+            var immobile = new Immobile(inspectionDate, address, "active");
+            var contract = new Contract(locator, renter, immobile, startContrat, endContrat);
+            var expected = false;
+            //Act
+            var result = contract.ContractPeriodIsValid();
+
+
+            //Assert
+            Assert.Equal(expected, result);
+
+        }
+
+    }
 }

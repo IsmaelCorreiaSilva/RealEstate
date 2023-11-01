@@ -11,7 +11,7 @@ namespace Domain.Entities
             Status = "open"; 
             StartContract = startContract;
             EndContract = endContract;
-            MinimumDate = AddMininumOfOneYear();
+            MinimumContract = AddMininumOfOneYear();
 
         }
 
@@ -21,7 +21,7 @@ namespace Domain.Entities
         public string Status { get; private set; }
         public DateTime StartContract { get; private set; }
         public DateTime EndContract { get; private set; }
-        public DateTime MinimumDate { get; private set; }
+        public DateTime MinimumContract { get; private set; }
         public bool LocatorIsValid()
         {
            return Locator.IsAdult() && Locator.DocumentIsValid();
@@ -38,5 +38,19 @@ namespace Domain.Entities
         {
             return DateTime.Today.AddYears(1);
         }
+        public bool ContractPeriodIsValid()
+        {
+            if(StartContract < DateTime.Today)
+                return false;
+
+            if(EndContract < DateTime.Today)
+                return false;
+            
+            if(EndContract < MinimumContract)
+                return false;
+                        
+            return true;
+        }
+
     }
 }
