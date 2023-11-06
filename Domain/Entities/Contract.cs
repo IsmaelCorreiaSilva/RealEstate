@@ -3,7 +3,7 @@ namespace Domain.Entities
 {
     public class Contract
     {
-        public Contract(Person locator, Person renter, Immobile immobile, DateTime startContract, DateTime endContract)
+        public Contract(Person locator, Person renter, Immobile immobile, DateTime startContract, DateTime endContract, decimal rentalValue)
         {
             Locator = locator;
             Renter = renter;
@@ -11,6 +11,8 @@ namespace Domain.Entities
             Status = "open"; 
             StartContract = startContract;
             EndContract = endContract;
+            RentalValue = rentalValue;
+            BailInsurance = new Installment().CreateBailInsuranceInstallment(rentalValue);
             MinimumContract = AddMininumOfOneYear();
 
         }
@@ -22,6 +24,8 @@ namespace Domain.Entities
         public DateTime StartContract { get; private set; }
         public DateTime EndContract { get; private set; }
         public DateTime MinimumContract { get; private set; }
+        public decimal RentalValue { get; private set; }
+        public Installment BailInsurance { get; private set; }
         public bool LocatorIsValid()
         {
            return Locator.IsAdult() && Locator.DocumentIsValid();
@@ -51,6 +55,20 @@ namespace Domain.Entities
                         
             return true;
         }
+        public bool BailInsuranceIsPaid()
+        {
+            return true;
+        }
+        private decimal CalculatesInsuranceValue()
+        {
+            return RentalValue * 2;
+        }
+        public bool PayBailInsurance(decimal value)
+        {
+            if(value == BailInsurance.Value)
+                return true;
 
+            return false;
+        }
     }
 }
