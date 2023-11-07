@@ -1,4 +1,6 @@
 ﻿
+using System.Net.Security;
+
 namespace Domain.Entities
 {
     public class Contract
@@ -57,18 +59,14 @@ namespace Domain.Entities
         }
         public bool BailInsuranceIsPaid()
         {
-            return true;
-        }
-        private decimal CalculatesInsuranceValue()
-        {
-            return RentalValue * 2;
-        }
-        public bool PayBailInsurance(decimal value)
-        {
-            if(value == BailInsurance.Value)
+            if (BailInsurance.Status.Equals("Paid"))
                 return true;
 
             return false;
+        }
+        public void PayBailInsurance(decimal value)
+        {
+            BailInsurance.Pay(value);
         }
     }
 }
