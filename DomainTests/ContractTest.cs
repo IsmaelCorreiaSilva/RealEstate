@@ -19,13 +19,13 @@ namespace DomainTests
             var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
             var immobile = new Immobile(inspectionDate, address, "active");
             var contract = new Contract(locator, renter, immobile, startContrat, endContrat,1200);
-            var expectedOutcome = "open";
+            var expected = ContractStatus.OPENED;
 
             //Act
             var result = contract.Status;
 
             //Assert
-            Assert.Equal(expectedOutcome, result);
+            Assert.Equal(expected, result);
 
         }
         [Fact]
@@ -361,30 +361,6 @@ namespace DomainTests
 
         }
 
-        //[Fact]
-        //public void DeveCriarUmContratoDeAluguel_E_CriaSeguroCalcaoERealizaOPagamentoMenorQueOEsperado()
-        //{
-        //    //Arrange
-        //    var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-        //    var startContrat = DateTime.Today.AddDays(2);
-        //    var endContrat = new DateTime(2023, 10, 10);
-        //    var dateBirthLocator = new DateTime(1980, 05, 18);
-        //    var dateBirthRenter = new DateTime(1993, 02, 20);
-        //    var inspectionDate = DateTime.Today.AddDays(-10);
-
-        //    var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-        //    var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-        //    var immobile = new Immobile(inspectionDate, address, "active");
-        //    var contract = new Contract(locator, renter, immobile, startContrat, endContrat, 1200);
-        //    var expected = false;
-        //    //Act
-        //    contract.PayBailInsurance(2000);
-        //    var result = contract.BailInsuranceIsPaid();
-            
-
-        //    //Assert
-        //    Assert.Equal(expected, result);
-        //}
 
     }
 }

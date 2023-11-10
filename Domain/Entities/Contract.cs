@@ -1,6 +1,4 @@
 ﻿
-using System.Net.Security;
-
 namespace Domain.Entities
 {
     public class Contract
@@ -10,7 +8,7 @@ namespace Domain.Entities
             Locator = locator;
             Renter = renter;
             Immobile = immobile;
-            Status = "open"; 
+            Status = ContractStatus.OPENED; 
             StartContract = startContract;
             EndContract = endContract;
             RentalValue = rentalValue;
@@ -22,7 +20,7 @@ namespace Domain.Entities
         public Person Locator { get; private set; }
         public Person Renter { get; private set; }
         public Immobile Immobile { get; private set; }
-        public string Status { get; private set; }
+        public ContractStatus Status { get; private set; }
         public DateTime StartContract { get; private set; }
         public DateTime EndContract { get; private set; }
         public DateTime MinimumContract { get; private set; }
@@ -59,7 +57,7 @@ namespace Domain.Entities
         }
         public bool BailInsuranceIsPaid()
         {
-            if (BailInsurance.Status.Equals("Paid"))
+            if (BailInsurance.Status == InstallmentStatus.PAID)
                 return true;
 
             return false;

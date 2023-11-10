@@ -11,7 +11,7 @@ namespace DomainTests
         {
             //Arrange
             var installment = new Installment();
-            var expectedDueDate = DateTime.Today.AddDays(7);
+            var expectedDueDate = installment.CreateDueDate(DateTime.Today);
             var expectedValue = 2400;
 
             //Act
@@ -28,14 +28,14 @@ namespace DomainTests
         {
             //Arrange
             var installment = new Installment();
-            var expectedDueDate = DateTime.Today.AddDays(7);
+            var expectedDueDate = installment.CreateDueDate(DateTime.Today);
             
             //Act
             var result = installment.CreateBailInsuranceInstallment(1200);
             result.Pay(2400);
 
             //Assert
-            Assert.Equal("Paid", result.Status);
+            Assert.Equal(InstallmentStatus.PAID, result.Status);
             Assert.Equal(DateTime.Today, result.Payday);
         }
         [Fact]
@@ -48,6 +48,37 @@ namespace DomainTests
             installment.CreateBailInsuranceInstallment(1200);
             var exception = Assert.Throws<InstallmentDomainExpection>(() => installment.Pay(2000));
             Assert.Equal("Valor informado é menor que parcela!", exception.Message);
+        }
+        [Fact]
+       public void DeveCriarParcelaNormal()
+       {
+            //Arrange
+            var installment = new Installment();
+            var expectedDueDate = installment.CreateDueDate(DateTime.Today);
+
+            //Act
+            var result = installment.CreateInstallment(1200, DateTime.Today);
+            
+
+            //Assert
+            Assert.Equal(InstallmentStatus.OPENED, result.Status);
+
+        }
+        [Fact]
+        public void DeveCriarParcelaNormal_E_RealizarOPagamento()
+        {
+            //Arrange
+            var installment = new Installment();
+            var expectedDueDate = DateTime.Today;
+
+            //Act
+            var result = installment.CreateInstallment(1200, DateTime.Today);
+            result.Pay(1200);
+
+            //Assert
+            Assert.Equal(InstallmentStatus.PAID, result.Status);
+            Assert.Equal(DateTime.Today, result.Payday);
+
         }
     }
 }

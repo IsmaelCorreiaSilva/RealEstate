@@ -13,27 +13,52 @@ namespace Domain.Entities
             //Payday = DateTime;
         }
         public string Number  { get; private set; }
-        public string Status { get; set; }
+        public InstallmentStatus Status { get; set; }
         public decimal Value { get; private set; }
         public DateTime DueDate { get; private set; }
         public DateTime Payday { get; private set;}
 
-        public Installment CreateBailInsuranceInstallment(decimal rentaValue) 
+        public Installment CreateBailInsuranceInstallment(decimal value) 
         {
             Number = "Only";
-            Value = rentaValue * 2;
-            Status = "Opened";
-            DueDate = DateTime.Today.AddDays(7);
+            Value = value * 2;
+            Status = InstallmentStatus.OPENED;
+            DueDate = CreateDueDate(DateTime.Today);
 
             return this;
+        }
+        public DateTime CreateDueDate(DateTime date)
+        {
+            date = date.AddDays(7);
+
+            if(date.DayOfWeek == DayOfWeek.Sunday) 
+                return date.AddDays(1);
+
+            if(date.DayOfWeek == DayOfWeek.Saturday)
+                return date.AddDays(2);
+
+            return date;
         }
         public void Pay(decimal value) 
         {
             if(value < Value)
                 throw new InstallmentDomainExpection("Valor informado é menor que parcela!");
 
-            Status = "Paid";
+            Status = InstallmentStatus.PAID;
             Payday = DateTime.Today;
+        }
+        public Installment CreateInstallment(decimal value, DateTime date)
+        {
+            Number = CreateNumber(date);
+            Value = value;
+            Status = InstallmentStatus.OPENED;
+            DueDate = CreateDueDate(date);
+
+            return this;
+        }
+        private string CreateNumber(DateTime date)
+        {
+            return date.Year + "/" + date.Month;
         }
     }
 }
