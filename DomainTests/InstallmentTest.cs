@@ -35,7 +35,7 @@ namespace DomainTests
             result.Pay(2400);
 
             //Assert
-            Assert.Equal(InstallmentStatus.PAID, result.Status);
+            Assert.Equal(EInstallmentStatus.PAID, result.Status);
             Assert.Equal(DateTime.Today, result.Payday);
         }
         [Fact]
@@ -61,7 +61,7 @@ namespace DomainTests
             
 
             //Assert
-            Assert.Equal(InstallmentStatus.OPENED, result.Status);
+            Assert.Equal(EInstallmentStatus.OPENED, result.Status);
 
         }
         [Fact]
@@ -76,8 +76,8 @@ namespace DomainTests
             result.Pay(1200);
 
             //Assert
-            Assert.Equal(InstallmentStatus.PAID, result.Status);
-            Assert.Equal(DateTime.Today, result.Payday);
+            Assert.Equal(EInstallmentStatus.PAID, result.Status);
+            Assert.Equal(expectedDueDate, result.Payday);
 
         }
     }

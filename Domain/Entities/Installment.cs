@@ -10,10 +10,9 @@ namespace Domain.Entities
             Number = "";
             Value = 0;
             DueDate = DateTime.MinValue;
-            //Payday = DateTime;
         }
         public string Number  { get; private set; }
-        public InstallmentStatus Status { get; set; }
+        public EInstallmentStatus Status { get; set; }
         public decimal Value { get; private set; }
         public DateTime DueDate { get; private set; }
         public DateTime Payday { get; private set;}
@@ -22,7 +21,7 @@ namespace Domain.Entities
         {
             Number = "Only";
             Value = value * 2;
-            Status = InstallmentStatus.OPENED;
+            Status = EInstallmentStatus.OPENED;
             DueDate = CreateDueDate(DateTime.Today);
 
             return this;
@@ -44,14 +43,14 @@ namespace Domain.Entities
             if(value < Value)
                 throw new InstallmentDomainExpection("Valor informado é menor que parcela!");
 
-            Status = InstallmentStatus.PAID;
+            Status = EInstallmentStatus.PAID;
             Payday = DateTime.Today;
         }
         public Installment CreateInstallment(decimal value, DateTime date)
         {
             Number = CreateNumber(date);
             Value = value;
-            Status = InstallmentStatus.OPENED;
+            Status = EInstallmentStatus.OPENED;
             DueDate = CreateDueDate(date);
 
             return this;

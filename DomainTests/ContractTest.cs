@@ -9,8 +9,8 @@ namespace DomainTests
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 11, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = DateTime.Today;
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today;
@@ -19,7 +19,7 @@ namespace DomainTests
             var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
             var immobile = new Immobile(inspectionDate, address, "active");
             var contract = new Contract(locator, renter, immobile, startContrat, endContrat,1200);
-            var expected = ContractStatus.OPENED;
+            var expected = EContractStatus.OPENED;
 
             //Act
             var result = contract.Status;
@@ -33,8 +33,8 @@ namespace DomainTests
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 11, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = DateTime.Today;
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today;
@@ -57,8 +57,8 @@ namespace DomainTests
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 11, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = DateTime.Today;
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(2010, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today;
@@ -81,8 +81,8 @@ namespace DomainTests
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 11, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = DateTime.Today;
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today;
@@ -104,8 +104,8 @@ namespace DomainTests
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 11, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = DateTime.Today;
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today;
@@ -127,8 +127,8 @@ namespace DomainTests
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 11, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = DateTime.Today;
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(2010, 02, 20);
             var inspectionDate = DateTime.Today;
@@ -150,8 +150,8 @@ namespace DomainTests
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 11, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = DateTime.Today;
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today;
@@ -169,12 +169,12 @@ namespace DomainTests
             Assert.Equal(expectedLocator, resultLocator);
         }
         [Fact]
-        public void DeveCriarUmContrato_Com_ImovelVistoriadoComMenosOuIgual7Dias()
+        public void DeveCriarUmContrato_Com_ImovelVistoriadoEmPeriodoMenorOuIgual7Dias()
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 11, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = DateTime.Today;
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today.AddDays(-7);
@@ -192,12 +192,12 @@ namespace DomainTests
             Assert.Equal(expectedImmobile, resulImmobile);
         }
         [Fact]
-        public void DeveCriarUmContrato_Com_ImovelVistoriadoComMaiorDe7Dias()
+        public void DeveCriarUmContrato_Com_ImovelVistoriadoEmPeriodoMaiorDe7Dias()
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 11, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = DateTime.Today;
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today.AddDays(-10);
@@ -219,8 +219,8 @@ namespace DomainTests
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 11, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = DateTime.Today;
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today.AddDays(-10);
@@ -242,8 +242,8 @@ namespace DomainTests
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 10, 1);
-            var endContrat = new DateTime(2025, 11, 1);
+            var startContrat = new DateTime(2023,10,10);
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today.AddDays(-10);
@@ -266,7 +266,7 @@ namespace DomainTests
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
             var startContrat = DateTime.Today.AddDays(2);
-            var endContrat = new DateTime(2023, 10, 10);
+            var endContrat = DateTime.Today.AddMonths(-3);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today.AddDays(-10);
@@ -289,7 +289,7 @@ namespace DomainTests
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
             var startContrat = DateTime.Today.AddDays(2);
-            var endContrat = new DateTime(2023, 10, 10);
+            var endContrat = DateTime.Today.AddMonths(6);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today.AddDays(-10);
@@ -313,7 +313,7 @@ namespace DomainTests
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
             var startContrat = DateTime.Today.AddDays(2);
-            var endContrat = new DateTime(2023, 10, 10);
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today.AddDays(-10);
@@ -338,7 +338,7 @@ namespace DomainTests
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
             var startContrat = DateTime.Today.AddDays(2);
-            var endContrat = new DateTime(2023, 10, 10);
+            var endContrat = DateTime.Today.AddYears(1);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
             var inspectionDate = DateTime.Today.AddDays(-10);
@@ -358,7 +358,32 @@ namespace DomainTests
             //Assert
             Assert.Equal(expected, result);
             //Assert.Equal(expectedPay, resultPay);
+        }
+        [Fact]
+        public void DeveCriarUmContratoDeAluguel_E_CriaAs12PrimeirasParcelasDoContrato()
+        {
+            //Arrange
+            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
+            var startContrat = DateTime.Today.AddDays(2);
+            var endContrat = DateTime.Today.AddYears(1);
+            var dateBirthLocator = new DateTime(1980, 05, 18);
+            var dateBirthRenter = new DateTime(1993, 02, 20);
+            var inspectionDate = DateTime.Today.AddDays(-10);
 
+            var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
+            var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
+            var immobile = new Immobile(inspectionDate, address, "active");
+            var contract = new Contract(locator, renter, immobile, startContrat, endContrat, 1200);
+            var expected = 12;
+
+            //Act
+            contract.CreateInstallments(12);
+            var result = contract.Installments.Count;
+
+
+            //Assert
+            Assert.Equal(expected, result);
+            //Assert.Equal(expectedPay, resultPay);
         }
 
 

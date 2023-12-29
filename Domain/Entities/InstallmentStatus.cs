@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities
 {
-    public enum InstallmentStatus
+    public enum EInstallmentStatus
     {
         PROCESSING,
         OPENED,

@@ -1,7 +1,7 @@
 ﻿
 namespace Domain.Entities
 {
-    public enum ContractStatus
+    public enum EContractStatus
     {
         OPENED,
         CANCELED
