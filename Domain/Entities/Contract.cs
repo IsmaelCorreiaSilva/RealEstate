@@ -14,7 +14,7 @@ namespace Domain.Entities
             RentalValue = rentalValue;
             BailInsurance = new Installment().CreateBailInsuranceInstallment(rentalValue);
             MinimumContract = AddMininumOfOneYear();
-            //Installments = new List<Installment>();
+            Installments = new List<Installment>();
 
         }
 
@@ -70,10 +70,10 @@ namespace Domain.Entities
         }
         public void CreateInstallments(int numberInstallments)
         {
-            Installments = new List<Installment>();
+            //Installments = new List<Installment>();
             for (int i = 0; i < numberInstallments; i++)
             {
-                Installments.Add(new Installment().CreateInstallment(RentalValue, DateTime.Today.AddMonths(i + 1)));
+                Installments.Add(new Installment().CreateInstallment(RentalValue, DateTime.Today.AddMonths(i)));
             }
         }
     }

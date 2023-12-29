@@ -288,7 +288,7 @@ namespace DomainTests
         {
             //Arrange
             var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = DateTime.Today.AddDays(2);
+            var startContrat = DateTime.Today;
             var endContrat = DateTime.Today.AddMonths(6);
             var dateBirthLocator = new DateTime(1980, 05, 18);
             var dateBirthRenter = new DateTime(1993, 02, 20);
@@ -348,8 +348,7 @@ namespace DomainTests
             var immobile = new Immobile(inspectionDate, address, "active");
             var contract = new Contract(locator, renter, immobile, startContrat, endContrat, 1200);
             var expected = true;
-            //var expectedPay = true;
-            
+
             //Act
             contract.PayBailInsurance(2400);
             var result = contract.BailInsuranceIsPaid();
@@ -357,7 +356,7 @@ namespace DomainTests
 
             //Assert
             Assert.Equal(expected, result);
-            //Assert.Equal(expectedPay, resultPay);
+            
         }
         [Fact]
         public void DeveCriarUmContratoDeAluguel_E_CriaAs12PrimeirasParcelasDoContrato()
@@ -383,7 +382,6 @@ namespace DomainTests
 
             //Assert
             Assert.Equal(expected, result);
-            //Assert.Equal(expectedPay, resultPay);
         }
 
 

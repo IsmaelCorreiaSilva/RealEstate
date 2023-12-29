@@ -38,9 +38,9 @@ namespace Domain.Entities
 
             return date;
         }
-        public void Pay(decimal value) 
+        public void Pay(decimal value)
         {
-            if(value < Value)
+            if (value < Value)
                 throw new InstallmentDomainExpection("Valor informado é menor que parcela!");
 
             Status = EInstallmentStatus.PAID;
