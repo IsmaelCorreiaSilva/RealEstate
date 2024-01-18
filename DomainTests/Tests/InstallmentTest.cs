@@ -2,7 +2,7 @@
 using Domain.Entities;
 using Domain.Exceptions;
 
-namespace DomainTests
+namespace DomainTests.Tests
 {
     public class InstallmentTest
     {
@@ -16,7 +16,7 @@ namespace DomainTests
 
             //Act
             var result = installment.CreateBailInsuranceInstallment(1200);
-            
+
             //Assert
             Assert.Equal("Only", result.Number);
             Assert.Equal(expectedValue, result.Value);
@@ -50,15 +50,15 @@ namespace DomainTests
         //    Assert.Equal("Valor informado é menor que parcela!", exception.Message);
         //}
         [Fact]
-       public void DeveCriarParcelaNormal()
-       {
+        public void DeveCriarParcelaNormal()
+        {
             //Arrange
             var installment = new Installment();
             var expectedDueDate = installment.CreateDueDate(DateTime.Today);
 
             //Act
             var result = installment.CreateInstallment(1200, DateTime.Today);
-            
+
 
             //Assert
             Assert.Equal(EInstallmentStatus.OPENED, result.Status);

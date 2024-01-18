@@ -1,7 +1,6 @@
-﻿
-using Domain.Entities;
+﻿using DomainTests.FakerData;
 
-namespace DomainTests
+namespace DomainTests.Tests
 {
     public class ImmobileTest
     {
@@ -9,9 +8,7 @@ namespace DomainTests
         public void DeveCriarUmImovel_E_VerificaAInspecaoDeAte7Dias()
         {
             //Arrange
-            var address = new Address("19050-501","Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var inspectionDate = DateTime.Today.AddDays(-7);
-            var immobile = new Immobile(inspectionDate, address,"active");
+            var immobile = new ImmobileFaker().Generate();
             var expectedOutcome = true;
             //Act
             var result = immobile.InspectionIsValid();
@@ -21,9 +18,8 @@ namespace DomainTests
         [Fact]
         public void DeveCriarUmImovel_E_VerificaInspecaoDeMaisDe7Dias()
         {
-            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var inspectionDate = DateTime.Today.AddDays(-10);
-            var immobile = new Immobile(inspectionDate, address, "active");
+            //Arrange
+            var immobile = new ImmobileFaker(-10).Generate();
             var expectedOutcome = false;
             //Act
             var result = immobile.InspectionIsValid();

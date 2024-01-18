@@ -3,6 +3,10 @@ namespace Domain.Entities
 {
     public class Contract
     {
+        public Contract()
+        {
+            
+        }
         public Contract(Person locator, Person renter, Immobile immobile, DateTime startContract, DateTime endContract, decimal rentalValue)
         {
             Locator = locator;

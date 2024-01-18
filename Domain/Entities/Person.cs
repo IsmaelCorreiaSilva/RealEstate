@@ -3,19 +3,23 @@ namespace Domain.Entities
 {
     public class Person
     {
-        public Person(string document, string name, DateTime dateBirth) 
+        public Person()
+        {
+            
+        }
+        public Person(string document, string name, DateTime birthDate) 
         {
             Document = document;
             Name = name;
-            DateBirth = dateBirth;
+            BirthDate = birthDate;
         }
         public string Document { get; private set; }
         public string Name { get; private set; }
-        public DateTime DateBirth { get; private set; }
+        public DateTime BirthDate { get; private set; }
 
         public bool IsAdult()
         {
-            return (DateTime.Today.Year - this.DateBirth.Year) >= 18;
+            return (DateTime.Today.Year - this.BirthDate.Year) >= 18;
         }
         public bool DocumentIsValid() 
         {

@@ -1,7 +1,6 @@
-﻿
-using Domain.Entities;
+﻿using DomainTests.FakerData;
 
-namespace DomainTests
+namespace DomainTests.Tests
 {
     public class PersonTest
     {
@@ -9,7 +8,8 @@ namespace DomainTests
         public void DeveCriarUmaPessoa_E_VerificarSeDocumentoEValido()
         {
             //Arrange
-            var person = new Person("987.001.920-07", "Carlar da Silva", new DateTime(1995,05,19));
+            var person = new PersonFaker().Generate();
+
             var expectedOutcome = true; //resultado esperado
             //Act
             var result = person.DocumentIsValid();
@@ -22,8 +22,7 @@ namespace DomainTests
         public void DeveRetornarQueDocumentoEInvalido()
         {
             //Arrange
-            //var person = new Person("111.111.111-11", "Carlar da Silva", new DateTime(1995, 05, 19));
-            var person = new Person("411.777.679-88", "Carlar da Silva", new DateTime(1995, 05, 19));
+            var person = new PersonFaker("111.111.111-11").Generate();
             var expectedOutcome = false; //resultado esperado
 
             //Act
@@ -36,7 +35,7 @@ namespace DomainTests
         public void DeveRetornarQueEMaiorDe18()
         {
             //Arrange
-            var person = new Person("987.001.920-07", "Carlar da Silva", new DateTime(1995, 05, 19));
+            var person = new PersonFaker().Generate();
             var expectedOutcome = true; //resultado esperado
 
             //Act
@@ -50,7 +49,7 @@ namespace DomainTests
         public void DeveRetornarQueEManorDe18()
         {
             //Arrange
-            var person = new Person("987.001.920-07", "Carlar da Silva", new DateTime(2010, 05, 19));
+            var person = new PersonFaker(16).Generate();
             var expectedOutcome = false; //resultado esperado
 
             //Act

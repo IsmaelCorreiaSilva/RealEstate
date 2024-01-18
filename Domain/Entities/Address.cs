@@ -2,6 +2,7 @@
 {
     public class Address
     {
+        public Address() { }
         public Address(string zipCode, string street, string number, string district, string city, string state, string? complement)
         {
             ZipCode = zipCode;
