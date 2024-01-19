@@ -17,6 +17,7 @@ namespace DomainTests.FakerData
             RuleFor(c => c.Locator, new PersonFaker().Generate());
             RuleFor(c => c.Status, EContractStatus.OPENED);
             RuleFor(c => c.BailInsurance, new Installment().CreateBailInsuranceInstallment(rentalValue));
+            RuleFor(c => c.Installments, new List<Installment>());
         }
         public ContractFaker(decimal rentalValue, int years)
         {
@@ -29,7 +30,6 @@ namespace DomainTests.FakerData
             RuleFor(c => c.Locator, new PersonFaker(years).Generate());
             RuleFor(c => c.Status, EContractStatus.OPENED);
             RuleFor(c => c.BailInsurance, new Installment().CreateBailInsuranceInstallment(rentalValue));
-
         }
         public ContractFaker(decimal rentalValue, string cpf)
         {
@@ -42,7 +42,7 @@ namespace DomainTests.FakerData
             RuleFor(c => c.Locator, new PersonFaker(cpf).Generate());
             RuleFor(c => c.Status, EContractStatus.OPENED);
             RuleFor(c => c.BailInsurance, new Installment().CreateBailInsuranceInstallment(rentalValue));
-
+            RuleFor(c => c.Installments, new List<Installment>());
         }
         public ContractFaker(decimal rentalValue, int years, int days)
         {
@@ -55,6 +55,20 @@ namespace DomainTests.FakerData
             RuleFor(c => c.Locator, new PersonFaker().Generate());
             RuleFor(c => c.Status, EContractStatus.OPENED);
             RuleFor(c => c.BailInsurance, new Installment().CreateBailInsuranceInstallment(rentalValue));
+            RuleFor(c => c.Installments, new List<Installment>());
+        }
+        public ContractFaker(decimal rentalValue, DateTime startContract, DateTime endContract)
+        {
+            RuleFor(c => c.StartContract, startContract);
+            RuleFor(c => c.EndContract, endContract);
+            RuleFor(c => c.MinimumContract, DateTime.Today.AddYears(1));
+            RuleFor(c => c.RentalValue, rentalValue);
+            RuleFor(c => c.Immobile, new ImmobileFaker().Generate());
+            RuleFor(c => c.Renter, new PersonFaker().Generate());
+            RuleFor(c => c.Locator, new PersonFaker().Generate());
+            RuleFor(c => c.Status, EContractStatus.OPENED);
+            RuleFor(c => c.BailInsurance, new Installment().CreateBailInsuranceInstallment(rentalValue));
+            RuleFor(c => c.Installments, new List<Installment>());
         }
     }
 }

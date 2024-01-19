@@ -10,15 +10,6 @@ namespace DomainTests.Tests
         public void DeveCriarUmContrato_E_RetornarUmContratoAberto()
         {
             //Arrange
-            //var address = new AddressFaker().Generate();
-            //var startContrat = DateTime.Today;
-            //var endContrat = DateTime.Today.AddYears(1);
-            //var dateBirthLocator = new DateTime(1980, 05, 18);
-            //var dateBirthRenter = new DateTime(1993, 02, 20);
-            //var inspectionDate = DateTime.Today;
-            //var locator = new PersonFaker().Generate();
-            //var renter = new PersonFaker().Generate();
-            // immobile = new Immobile(inspectionDate, address, "active");
             var contract = new ContractFaker(1200).Generate();
             var expected = EContractStatus.OPENED;
 
@@ -33,16 +24,6 @@ namespace DomainTests.Tests
         public void DeveCriarUmContrato_Com_LocadorMaiorDeIdadeEDocumentoValido()
         {
             //Arrange
-            //var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            //var startContrat = DateTime.Today;
-            //var endContrat = DateTime.Today.AddYears(1);
-            //var dateBirthLocator = new DateTime(1980, 05, 18);
-            //var dateBirthRenter = new DateTime(1993, 02, 20);
-            //var inspectionDate = DateTime.Today;
-
-            //var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            //var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
             var contract = new ContractFaker(1200).Generate();
             var expectedLocator = true;
             //Act
@@ -57,16 +38,6 @@ namespace DomainTests.Tests
         public void DeveCriarUmContrato_Com_LocadorMenorDeIdadeEDocumentoValido()
         {
             //Arrange
-            //var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            //var startContrat = DateTime.Today;
-            //var endContrat = DateTime.Today.AddYears(1);
-            //var dateBirthLocator = new DateTime(2010, 05, 18);
-            //var dateBirthRenter = new DateTime(1993, 02, 20);
-            //var inspectionDate = DateTime.Today;
-
-            //var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            //var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
             var contract = new ContractFaker(1200,-16).Generate();
             var expectedLocator = false;
             //Act
@@ -81,16 +52,6 @@ namespace DomainTests.Tests
         public void DeveCriarUmContrato_Com_LocadorMaiorDeIdadeEDocumentoInvalido()
         {
             //Arrange
-            //var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            //var startContrat = DateTime.Today;
-            //var endContrat = DateTime.Today.AddYears(1);
-            //var dateBirthLocator = new DateTime(1980, 05, 18);
-            //var dateBirthRenter = new DateTime(1993, 02, 20);
-            //var inspectionDate = DateTime.Today;
-
-            //var locator = new Person("111.111.111-11", "João da Silva", dateBirthLocator);
-            //var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            ///var immobile = new Immobile(inspectionDate, address, "active");
             var contract = new ContractFaker(1200, "111.111.111-11").Generate();
             var expectedLocator = false;
             //Act
@@ -104,16 +65,6 @@ namespace DomainTests.Tests
         public void DeveCriarUmContrato_Com_LocatarioMenorDeIdadeEDocumentoValido()
         {
             //Arrange
-            //var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            //var startContrat = DateTime.Today;
-            //var endContrat = DateTime.Today.AddYears(1);
-            //var dateBirthLocator = new DateTime(1980, 05, 18);
-            //var dateBirthRenter = new DateTime(2010, 02, 20);
-            //var inspectionDate = DateTime.Today;
-
-            //var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            //var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
             var contract = new ContractFaker(1200,-16).Generate();
             var expectedLocator = false;
             //Act
@@ -127,16 +78,6 @@ namespace DomainTests.Tests
         public void DeveCriarUmContrato_Com_LocatarioMaiorDeIdadeEDocumentoInvalido()
         {
             //Arrange
-            //var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            //var startContrat = DateTime.Today;
-            //var endContrat = DateTime.Today.AddYears(1);
-            //var dateBirthLocator = new DateTime(1980, 05, 18);
-            //var dateBirthRenter = new DateTime(1993, 02, 20);
-            //var inspectionDate = DateTime.Today;
-
-            /////var immobile = new Immobile(inspectionDate, address, "active");
-            //var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            //var renter = new Person("333.333.333-33", "Maria de Souza", dateBirthRenter);
             var contract = new ContractFaker(1200,"111.111.111-11").Generate();
             var expectedLocator = false;
             //Act
@@ -150,16 +91,6 @@ namespace DomainTests.Tests
         public void DeveCriarUmContrato_Com_ImovelVistoriadoEmPeriodoMenorOuIgual7Dias()
         {
             //Arrange
-            //var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            //var startContrat = DateTime.Today;
-            //var endContrat = DateTime.Today.AddYears(1);
-            //var dateBirthLocator = new DateTime(1980, 05, 18);
-            //var dateBirthRenter = new DateTime(1993, 02, 20);
-            //var inspectionDate = DateTime.Today.AddDays(-7);
-
-            //var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            //var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
             var contract = new ContractFaker(1200).Generate();
             var expectedImmobile = true;
             //Act
@@ -173,16 +104,6 @@ namespace DomainTests.Tests
         public void DeveCriarUmContrato_Com_ImovelVistoriadoEmPeriodoMaiorDe7Dias()
         {
             //Arrange
-            //var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            //var startContrat = DateTime.Today;
-            //var endContrat = DateTime.Today.AddYears(1);
-            //var dateBirthLocator = new DateTime(1980, 05, 18);
-            //var dateBirthRenter = new DateTime(1993, 02, 20);
-            //var inspectionDate = DateTime.Today.AddDays(-10);
-
-            //var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            //var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
             var contract = new ContractFaker(1200,0,-10).Generate();
             var expectedImmobile = false;
             //Act
@@ -196,16 +117,6 @@ namespace DomainTests.Tests
         public void DeveCriarUmContrato_Com_TempoMinimoDeContratoDeUmAno()
         {
             //Arrange
-            //var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            //var startContrat = DateTime.Today;
-            //var endContrat = DateTime.Today.AddYears(1);
-            //var dateBirthLocator = new DateTime(1980, 05, 18);
-            //var dateBirthRenter = new DateTime(1993, 02, 20);
-            //var inspectionDate = DateTime.Today.AddDays(-10);
-
-            //var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            //var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
             var contract = new ContractFaker(1200).Generate();
             var expected = DateTime.Today.AddYears(1);
             //Act
@@ -215,151 +126,91 @@ namespace DomainTests.Tests
             //Assert
             Assert.Equal(expected, result);
         }
-        [Fact(Skip = "Refactoring")]
+        [Fact]
         public void DeveCriarUmContrato_Com_DataDeInicioDoContratoNoPassado()
         {
             //Arrange
-            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = new DateTime(2023, 10, 10);
-            var endContrat = DateTime.Today.AddYears(1);
-            var dateBirthLocator = new DateTime(1980, 05, 18);
-            var dateBirthRenter = new DateTime(1993, 02, 20);
-            var inspectionDate = DateTime.Today.AddDays(-10);
-
-            var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
-            //var contract = new Contract(locator, renter, immobile, startContrat, endContrat, 1200);
+            var contract = new ContractFaker(1200, new DateTime(2013,10,10), DateTime.Today.AddYears(3)).Generate();
             var expected = false;
             //Act
-            //var result = contract.ContractPeriodIsValid();
+            var result = contract.ContractPeriodIsValid();
 
 
             //Assert
-            //Assert.Equal(expected, result);
+            Assert.Equal(expected, result);
         }
-        [Fact(Skip = "Refactoring")]
+        [Fact]
         public void DeveCriarUmContrato_Com_DataDeFimDoContratoNoPassado()
         {
             //Arrange
-            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = DateTime.Today.AddDays(2);
-            var endContrat = DateTime.Today.AddMonths(-3);
-            var dateBirthLocator = new DateTime(1980, 05, 18);
-            var dateBirthRenter = new DateTime(1993, 02, 20);
-            var inspectionDate = DateTime.Today.AddDays(-10);
-
-            var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
-            //var contract = new Contract(locator, renter, immobile, startContrat, endContrat, 1200);
+            var contract = new ContractFaker(1200, DateTime.Today, DateTime.Today.AddMonths(-1)).Generate();
             var expected = false;
             //Act
-            //var result = contract.ContractPeriodIsValid();
+            var result = contract.ContractPeriodIsValid();
 
 
             //Assert
-            //Assert.Equal(expected, result);
+            Assert.Equal(expected, result);
         }
-        [Fact(Skip = "Refactoring")]
+        [Fact]
         public void DeveCriarUmContrato_Com_DataDeFimDoContratoMenorQueDataMinima()
         {
             //Arrange
-            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = DateTime.Today;
-            var endContrat = DateTime.Today.AddMonths(6);
-            var dateBirthLocator = new DateTime(1980, 05, 18);
-            var dateBirthRenter = new DateTime(1993, 02, 20);
-            var inspectionDate = DateTime.Today.AddDays(-10);
-
-            var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
-            //var contract = new Contract(locator, renter, immobile, startContrat, endContrat, 1200);
+            var contract = new ContractFaker(1200, DateTime.Today, DateTime.Today.AddMonths(6)).Generate();
             var expected = false;
             //Act
-            //var result = contract.ContractPeriodIsValid();
+            var result = contract.ContractPeriodIsValid();
 
 
             //Assert
-            //Assert.Equal(expected, result);
+            Assert.Equal(expected, result);
 
         }
-        [Fact(Skip = "Refactoring")]
+        [Fact]
         public void DeveCriarUmContratoDeAluguel_E_CriaSeguroCalcao2VezesOValorDoAluguel()
         {
             //Arrange
-            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = DateTime.Today.AddDays(2);
-            var endContrat = DateTime.Today.AddYears(1);
-            var dateBirthLocator = new DateTime(1980, 05, 18);
-            var dateBirthRenter = new DateTime(1993, 02, 20);
-            var inspectionDate = DateTime.Today.AddDays(-10);
-
-            var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
-            //var contract = new Contract(locator, renter, immobile, startContrat, endContrat, 1170);
+            var contract = new ContractFaker(1170).Generate();
             var expected = 2340;
 
             //Act
-            //var result = contract.BailInsurance.Value;
+            var result = contract.BailInsurance.Value;
 
 
             //Assert
-            //Assert.Equal(expected, result);
+            Assert.Equal(expected, result);
 
         }
-        [Fact(Skip = "Refactoring")]
+        [Fact]
         public void DeveCriarUmContratoDeAluguel_E_CriaSeguroCalcaoERealizaOPagamento()
         {
             //Arrange
-            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = DateTime.Today.AddDays(2);
-            var endContrat = DateTime.Today.AddYears(1);
-            var dateBirthLocator = new DateTime(1980, 05, 18);
-            var dateBirthRenter = new DateTime(1993, 02, 20);
-            var inspectionDate = DateTime.Today.AddDays(-10);
-
-            var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            ///var immobile = new Immobile(inspectionDate, address, "active");
-            //var contract = new Contract(locator, renter, immobile, startContrat, endContrat, 1200);
+            var contract = new ContractFaker(1200).Generate();
             var expected = true;
 
             //Act
-            //contract.PayBailInsurance(2400);
-            //var result = contract.BailInsuranceIsPaid();
+            contract.PayBailInsurance(2400);
+            var result = contract.BailInsuranceIsPaid();
 
 
             //Assert
-            //Assert.Equal(expected, result);
+            Assert.Equal(expected, result);
 
         }
-        [Fact(Skip = "Refactoring")]
+        [Fact]
         public void DeveCriarUmContratoDeAluguel_E_CriaAs12PrimeirasParcelasDoContrato()
         {
             //Arrange
-            var address = new Address("19050-501", "Rua dos Laranjais", "150", "Vila Maria", "São Paulo", "São Paulo", "Esquina com a Rua São Pedro");
-            var startContrat = DateTime.Today.AddDays(2);
-            var endContrat = DateTime.Today.AddYears(1);
-            var dateBirthLocator = new DateTime(1980, 05, 18);
-            var dateBirthRenter = new DateTime(1993, 02, 20);
-            var inspectionDate = DateTime.Today.AddDays(-10);
-
-            var locator = new Person("987.001.920-07", "João da Silva", dateBirthLocator);
-            var renter = new Person("523.002.980-31", "Maria de Souza", dateBirthRenter);
-            //var immobile = new Immobile(inspectionDate, address, "active");
-            //var contract = new Contract(locator, renter, immobile, startContrat, endContrat, 1200);
+            var contract = new ContractFaker(1200).Generate();
             var expected = 12;
 
             //Act
-            //contract.CreateInstallments(12);
-            //var result = contract.Installments.Count;
+            contract.CreateInstallments(12);
+            var result = contract.Installments.Count;
 
 
             //Assert
-            //Assert.Equal(expected, result);
+            Assert.Equal(expected, result);
         }
 
 
