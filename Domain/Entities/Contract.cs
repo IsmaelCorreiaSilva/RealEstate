@@ -1,4 +1,6 @@
 ﻿
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 namespace Domain.Entities
 {
     public class Contract
@@ -72,12 +74,13 @@ namespace Domain.Entities
         {
             BailInsurance.Pay(value);
         }
-        public void CreateInstallments(int numberInstallments)
+        public void CreateInstallments(DateTime initialDate, DateTime endDate)
         {
+            var numberInstallments = endDate.Month - initialDate.Month;
             //Installments = new List<Installment>();
             for (int i = 0; i < numberInstallments; i++)
             {
-                Installments.Add(new Installment().CreateInstallment(RentalValue, DateTime.Today.AddMonths(i)));
+                Installments.Add(new Installment().CreateInstallment(RentalValue, initialDate.AddMonths(i)));
             }
         }
     }

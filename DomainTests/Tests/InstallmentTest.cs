@@ -38,23 +38,27 @@ namespace DomainTests.Tests
             Assert.Equal(EInstallmentStatus.PAID, result.Status);
             Assert.Equal(DateTime.Today, result.Payday);
         }
-        //[Fact]
-        //public void DeveCriarParcelaDeSeguroFianca_E_RelizarOPagamentoMenorQueValorDoSeguro()
-        //{
-        //    //Arrange
-        //    var installment = new Installment();
+        [Fact]
+        public void devecriarparceladesegurofianca_e_relizaropagamentomenorquevalordoseguro()
+        {
+            //Arrange
+            var installment = new Installment();
+            var expected = false;
+            //Act 
+            installment.CreateBailInsuranceInstallment(1200);
+            var result = installment.Pay(1200);
 
-        //    //Act + Assert
-        //    installment.CreateBailInsuranceInstallment(1200);
-        //    var exception = Assert.Throws<InstallmentDomainExpection>(() => installment.Pay(2000));
-        //    Assert.Equal("Valor informado é menor que parcela!", exception.Message);
-        //}
+            //Asset
+            Assert.Equal(expected, result);
+            //var exception = Assert.Throws<InstallmentDomainExpection>(() => installment.Pay(2000));
+            //Assert.Equal("Valor informado é menor que parcela!", exception.Message);
+        }
         [Fact]
         public void DeveCriarParcelaNormal()
         {
             //Arrange
             var installment = new Installment();
-            var expectedDueDate = installment.CreateDueDate(DateTime.Today);
+            //var expectedDueDate = installment.CreateDueDate(DateTime.Today);
 
             //Act
             var result = installment.CreateInstallment(1200, DateTime.Today);
@@ -64,21 +68,53 @@ namespace DomainTests.Tests
             Assert.Equal(EInstallmentStatus.OPENED, result.Status);
 
         }
+        [Fact]
+        public void DeveCriarParcelaNormal_E_RealizarOPagamento()
+        {
+            //Arrange
+            var installment = new Installment();
+            var expectedDueDate = DateTime.Today;
+
+            //Act
+            var result = installment.CreateInstallment(1200, DateTime.Today);
+            result.Pay(1200);
+
+            //Assert
+            Assert.Equal(EInstallmentStatus.PAID, result.Status);
+            Assert.Equal(expectedDueDate, result.Payday);
+
+        }
+
+        [Fact]
+        public void DeveCriarParcelaNormal_E_RealizarOPagamentoAposDataDeVencimento()
+        {
+            //Arrange
+            var installment = new Installment();
+            var expectedPay = true;
+
+            //Act
+            var result = installment.CreateInstallment(1200, DateTime.Today.AddYears(-5));
+            result.Pay(1200);
+            var resultPay = result.PaymentMadeLate();
+
+            //Assert
+            Assert.Equal(expectedPay, resultPay);
+        }
         //[Fact]
-        //public void DeveCriarParcelaNormal_E_RealizarOPagamento()
+        //public void DeveCriarParcelaNormal_E_AplicarJurosEmCasoDeAtrasoMenorIgual7Dias()
         //{
         //    //Arrange
         //    var installment = new Installment();
-        //    var expectedDueDate = DateTime.Today;
+        //    var expectedPay = true;
 
         //    //Act
-        //    var result = installment.CreateInstallment(1200, DateTime.Today);
+        //    var result = installment.CreateInstallment(1200, DateTime.Today.AddYears(-5));
         //    result.Pay(1200);
+        //    var resultPay = ;
 
         //    //Assert
-        //    Assert.Equal(EInstallmentStatus.PAID, result.Status);
-        //    Assert.Equal(expectedDueDate, result.Payday);
-
+        //    Assert.Equal(expectedPay, resultPay);
         //}
+
     }
 }

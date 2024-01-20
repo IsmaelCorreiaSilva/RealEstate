@@ -202,17 +202,18 @@ namespace DomainTests.Tests
         {
             //Arrange
             var contract = new ContractFaker(1200).Generate();
+            var initialDate = DateTime.Today;
+            var endDate = DateTime.Today.AddYears(1);
             var expected = 12;
 
             //Act
-            contract.CreateInstallments(12);
+            contract.CreateInstallments(initialDate, endDate);
             var result = contract.Installments.Count;
 
 
             //Assert
             Assert.Equal(expected, result);
         }
-
-
+        
     }
 }

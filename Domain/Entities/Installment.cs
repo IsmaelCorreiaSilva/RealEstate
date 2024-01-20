@@ -35,16 +35,26 @@ namespace Domain.Entities
 
             if(date.DayOfWeek == DayOfWeek.Saturday)
                 return date.AddDays(2);
-
+            
             return date;
         }
-        public void Pay(decimal value)
+        public bool Pay(decimal value)
         {
+            //if (value < Value)
+            //    throw new InstallmentDomainExpection("Valor informado é menor que parcela!");
             if (value < Value)
-                throw new InstallmentDomainExpection("Valor informado é menor que parcela!");
-
+                return false;
+            
             Status = EInstallmentStatus.PAID;
             Payday = DateTime.Today;
+            return true;
+        }
+        public bool PaymentMadeLate()
+        {
+            if (DueDate < DateTime.Today)
+                return true;
+
+            return false;
         }
         public Installment CreateInstallment(decimal value, DateTime date)
         {
